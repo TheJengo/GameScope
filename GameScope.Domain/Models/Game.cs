@@ -14,5 +14,11 @@ namespace GameScope.Domain.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public User User { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
+
+        public Game()
+        {
+            Ratings = new HashSet<Rating>();
+        }
     }
 }
