@@ -1,5 +1,10 @@
-﻿using GameScope.Domain.Core.Bus;
+﻿using GameScope.Domain.CommandHandlers;
+using GameScope.Domain.Commands;
+using GameScope.Domain.Core.Bus;
+using GameScope.Domain.Interfaces;
 using GameScope.Infra.Bus;
+using GameScope.Infra.Data.Context;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,11 +20,21 @@ namespace GameScope.Infra.IoC
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             // Domain Handlers Injections
-            //services.AddScoped<IRequestHandler<Command, bool>, CommandHandler>();
+            services.AddScoped<IRequestHandler<CreateGameCommand, bool>, CreateGameCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateUserCommand, bool>, CreateUserCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateRatingCommand, bool>, CreateRatingCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGameCommand, bool>, UpdateGameCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateRatingCommand, bool>, UpdateRatingCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteGameCommand, bool>, DeleteGameCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteRatingCommand, bool>, DeleteRatingCommandHandler>();
 
             // Application Layer Injections
 
             // Infra Data Layer Injections
+            //services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<IGameRepository, GameRepository>();
+            //services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<GameScopeContext>();
         }
     }
 }
