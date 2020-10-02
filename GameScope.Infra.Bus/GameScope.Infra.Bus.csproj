@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommandHandlers\" />
+    <ProjectReference Include="..\GameScope.Domain.Core\GameScope.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>
