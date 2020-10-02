@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Domain", "GameScope.Domain", "{E1808E2F-44B1-487E-81F9-B06B314878F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Domain.Core", "GameScope.Domain.Core", "{ED9BBDC9-7A5E-417A-9056-3025ABFEE320}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Infra.Bus", "GameScope.Infra.Bus", "{07D4E5D7-88DD-490C-A6F1-3A8019E386D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Infra.Data", "GameScope.Infra.Data", "{19A68361-907A-4AA9-963C-7143FD929A03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Infra.IoC", "GameScope.Infra.IoC", "{EF349DE4-4271-4000-8987-F190F82DF2DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Application", "GameScope.Application", "{36585A85-DA48-4E2B-9567-E327775E6828}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameScope.Api", "GameScope.Api", "{2D496C52-E21E-4AAE-A2C3-660E7BB8E7D3}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04793DD5-87C0-4172-8DAA-F2A8D1CB23CB}
+	EndGlobalSection
+EndGlobal
