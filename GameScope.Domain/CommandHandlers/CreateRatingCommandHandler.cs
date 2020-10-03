@@ -25,7 +25,9 @@ namespace GameScope.Domain.CommandHandlers
             {
                 UserId = request.UserId,
                 GameId = request.GameId,
-                Value = request.Value
+                Value = request.Value,
+                CreatedDate = request.TimeStamp,
+                UpdatedDate = null
             };
 
             // _ratingRepository.Add(rating);

@@ -22,6 +22,7 @@ namespace GameScope.Domain.CommandHandlers
         {
             //var rating = _ratingRepository.Get(x => x.UserId == request.UserId && x.GameId == request.GameId);
             //rating.Value = request.Value;
+            //rating.UpdatedAt = request.TimeStamp;
 
             // _ratingRepository.Update(rating);
 

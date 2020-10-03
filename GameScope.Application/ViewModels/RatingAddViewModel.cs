@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GameScope.Application.ViewModels
+{
+    public class RatingAddViewModel
+    {
+        public int Value { get; set; }
+    }
+}

@@ -30,7 +30,7 @@ namespace GameScope.Infra.Common.Auth
             };
         }
 
-        public JsonWebToken Create(Guid id)
+        public JsonWebToken Create(int userId)
         {
             var nowUtc = DateTime.UtcNow;
             var expires = nowUtc.AddMinutes(_options.ExpiryMinutes);
@@ -39,11 +39,11 @@ namespace GameScope.Infra.Common.Auth
             var now = (long)(new TimeSpan(nowUtc.Ticks - centuryBegin.Ticks).TotalSeconds);
             var payload = new JwtPayload
             {
-                {"sub", id },
+                {"sub", userId },
                 {"iss", _options.Issuer },
                 {"iat",  now },
                 {"exp",exp },
-                {"unique_name", id }
+                {"unique_name", userId }
             };
             var jwt = new JwtSecurityToken(_jwtHeader, payload);
             var token = _jwtSecurityTokenHandler.WriteToken(jwt);

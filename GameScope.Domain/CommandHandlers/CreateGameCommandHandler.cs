@@ -27,7 +27,7 @@ namespace GameScope.Domain.CommandHandlers
                 UserId = request.UserId,
                 Description = request.Description,
                 ReleaseDate = request.ReleaseDate,
-                CreatedAt = request.CreatedAt,
+                CreatedDate = request.CreatedAt,
                 UpdatedDate = request.UpdatedAt
             };
 

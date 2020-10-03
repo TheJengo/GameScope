@@ -26,6 +26,8 @@ namespace GameScope.Domain.CommandHandlers
                 Email = request.Email,
                 Password = request.Password,
                 Salt = request.Salt,
+                CreatedDate = request.TimeStamp,
+                UpdatedDate = null
             };
 
             // _userRepository.Add(user);

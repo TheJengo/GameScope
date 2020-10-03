@@ -11,11 +11,13 @@ namespace GameScope.Domain.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        public ICollection<Game> Games;
-        public ICollection<Rating> Ratings;
+        // Relationships
+        public virtual ICollection<Game> Games { get; set; }
+        
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public User()
         {

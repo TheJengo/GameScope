@@ -19,17 +19,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Domain", "GameSco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Domain.Core", "GameScope.Domain.Core\GameScope.Domain.Core.csproj", "{BB266A38-F45A-4A92-9CBF-C284FD759316}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Infra.Bus", "GameScope.Infra.Bus\GameScope.Infra.Bus.csproj", "{D1119F55-D556-41AA-850C-2D4B8D3CA3FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Infra.Bus", "GameScope.Infra.Bus\GameScope.Infra.Bus.csproj", "{D1119F55-D556-41AA-850C-2D4B8D3CA3FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Infra.IoC", "GameScope.Infra.IoC\GameScope.Infra.IoC.csproj", "{A7FFBBEB-193B-4009-B775-FA66AB77B40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Infra.IoC", "GameScope.Infra.IoC\GameScope.Infra.IoC.csproj", "{A7FFBBEB-193B-4009-B775-FA66AB77B40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Infra.Data", "GameScope.Infra.Data\GameScope.Infra.Data.csproj", "{A0E4E99E-F5D0-4F65-A5B8-ABBA4E1298A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Infra.Data", "GameScope.Infra.Data\GameScope.Infra.Data.csproj", "{A0E4E99E-F5D0-4F65-A5B8-ABBA4E1298A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Application", "GameScope.Application\GameScope.Application.csproj", "{7514E1EA-281E-467C-BC1C-827846D84EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Application", "GameScope.Application\GameScope.Application.csproj", "{7514E1EA-281E-467C-BC1C-827846D84EEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Common", "Infra.Common", "{B40E55B2-8C4D-4574-B113-8A400209CFB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Infra.Common", "GameScope.Infra.Common\GameScope.Infra.Common.csproj", "{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Infra.Common", "GameScope.Infra.Common\GameScope.Infra.Common.csproj", "{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Api", "GameScope.Api\GameScope.Api.csproj", "{359D4985-66BB-4BB1-A149-B08ADC3C61FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{A0E4E99E-F5D0-4F65-A5B8-ABBA4E1298A9} = {19A68361-907A-4AA9-963C-7143FD929A03}
 		{7514E1EA-281E-467C-BC1C-827846D84EEC} = {36585A85-DA48-4E2B-9567-E327775E6828}
 		{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC} = {B40E55B2-8C4D-4574-B113-8A400209CFB3}
+		{359D4985-66BB-4BB1-A149-B08ADC3C61FC} = {2D496C52-E21E-4AAE-A2C3-660E7BB8E7D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04793DD5-87C0-4172-8DAA-F2A8D1CB23CB}

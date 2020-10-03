@@ -25,7 +25,7 @@ namespace GameScope.Domain.CommandHandlers
             //game.Name = request.Name;
             //game.Description = request.Description;
             //game.ReleaseDate = request.ReleaseDate;
-            //game.UpdatedDate = request.UpdatedAt;
+            //game.UpdatedAt = request.UpdatedAt;
 
             // _gameRepository.Update(game);
 

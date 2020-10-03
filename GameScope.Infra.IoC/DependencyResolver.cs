@@ -6,6 +6,7 @@ using GameScope.Infra.Bus;
 using GameScope.Infra.Common.Auth;
 using GameScope.Infra.Common.Security;
 using GameScope.Infra.Data.Context;
+using GameScope.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,9 +39,9 @@ namespace GameScope.Infra.IoC
             services.AddScoped<IEncrypter, Encrypter>();
 
             // Infra Data Layer Injections
-            //services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddScoped<IGameRepository, GameRepository>();
-            //services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGameRepository, GameRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
             services.AddScoped<GameScopeContext>();
         }
     }

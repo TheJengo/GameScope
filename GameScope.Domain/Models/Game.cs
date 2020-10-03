@@ -12,10 +12,12 @@ namespace GameScope.Domain.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public User User { get; set; }
-        public ICollection<Rating> Ratings { get; set; }
+        public virtual User User { get; set; }
+
+        // Relationships
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public Game()
         {
