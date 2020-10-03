@@ -6,6 +6,7 @@ using GameScope.Domain.Core.Bus;
 using GameScope.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GameScope.Application.Services
@@ -13,12 +14,14 @@ namespace GameScope.Application.Services
     public class GameService : IGameService
     {
         private readonly IGameRepository _gameRepository;
+        private readonly IRatingRepository _ratingRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _mapper;
 
-        public GameService(IGameRepository gameRepository, IMediatorHandler bus, IMapper mapper)
+        public GameService(IGameRepository gameRepository, IRatingRepository ratingRepository, IMediatorHandler bus, IMapper mapper)
         {
             _gameRepository = gameRepository;
+            _ratingRepository = ratingRepository;
             _bus = bus;
             _mapper = mapper;
         }
@@ -47,8 +50,17 @@ namespace GameScope.Application.Services
         public IList<GameListViewModel> GetAll()
         {
             var games = _gameRepository.GetAll(g => g.User, g => g.Ratings);
+            
+            return _mapper.Map<List<GameListViewModel>>(games);
+        }
 
-            return _mapper.Map<IList<GameListViewModel>>(games);
+        public GameDetailsViewModel GetById(int id)
+        {
+            var game = _gameRepository.GetSingle(x => x.Id == id, g => g.Ratings, g => g.User);
+            var gameRatings = _ratingRepository.GetList(x => x.GameId == game.Id, r => r.User);
+            game.Ratings = gameRatings;
+
+            return _mapper.Map<GameDetailsViewModel>(game);
         }
     }
 }

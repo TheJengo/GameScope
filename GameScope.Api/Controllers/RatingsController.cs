@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameScope.Api.Controllers
 {
+    /// <summary>
+    /// api/ratings controller manages http requests for ratings entity.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -23,7 +26,18 @@ namespace GameScope.Api.Controllers
             _ratingService = ratingService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var ratings = _ratingService.GetAll();
+
+            return StatusCode(StatusCodes.Status200OK, ratings);
+        }
+
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Post([FromBody] RatingAddViewModel ratingAddViewModel)
         {
             ratingAddViewModel.UserId = Convert.ToInt32(User.Identity.Name);
@@ -33,16 +47,22 @@ namespace GameScope.Api.Controllers
         }
 
         [HttpPut("{gameId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Put([FromBody] RatingUpdateViewModel ratingUpdateViewModel, int gameId)
         {
             ratingUpdateViewModel.GameId = gameId;
-            var userId = Convert.ToInt32(User.Identity.Name);
-            _ratingService.Update(ratingUpdateViewModel, userId);
+            ratingUpdateViewModel.UserId = Convert.ToInt32(User.Identity.Name);
+            _ratingService.Update(ratingUpdateViewModel);
 
             return StatusCode(StatusCodes.Status200OK);
         }
 
         [HttpDelete()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Delete(int gameId, int userId)
         {
             var requestedUserId = Convert.ToInt32(User.Identity.Name);

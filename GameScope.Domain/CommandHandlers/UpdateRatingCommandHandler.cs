@@ -21,6 +21,12 @@ namespace GameScope.Domain.CommandHandlers
         public Task<bool> Handle(UpdateRatingCommand request, CancellationToken cancellationToken)
         {
             var rating = _ratingRepository.GetSingle(x => x.UserId == request.UserId && x.GameId == request.GameId);
+            
+            if(rating == null)
+            {
+                return Task.FromResult(false);
+            }
+
             rating.Value = request.Value;
             rating.UpdatedDate = request.TimeStamp;
 

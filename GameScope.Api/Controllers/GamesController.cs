@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameScope.Api.Controllers
 {
+    /// <summary>
+    /// api/games controller manages http requests for game entity.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -24,6 +27,9 @@ namespace GameScope.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<GameListViewModel>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Get()
         {
             var games = _gameService.GetAll();
@@ -31,7 +37,21 @@ namespace GameScope.Api.Controllers
             return StatusCode(StatusCodes.Status200OK, games);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(List<GameListViewModel>), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
+        public IActionResult Get(int id)
+        {
+            var game = _gameService.GetById(id);
+
+            return StatusCode(StatusCodes.Status200OK, game);
+        }
+
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Post([FromBody] GameCreateViewModel gameCreateViewModel)
         {
             gameCreateViewModel.UserId = Convert.ToInt32(User.Identity.Name);
@@ -41,6 +61,9 @@ namespace GameScope.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Put([FromBody] GameUpdateViewModel gameUpdateViewModel, int id)
         {
             gameUpdateViewModel.Id = id;
@@ -51,6 +74,9 @@ namespace GameScope.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
         public IActionResult Delete(int id)
         {
             var userId = Convert.ToInt32(User.Identity.Name);

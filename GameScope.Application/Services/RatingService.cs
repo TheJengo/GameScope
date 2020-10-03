@@ -30,10 +30,9 @@ namespace GameScope.Application.Services
             _bus.SendCommand(createRatingCommand);
         }
 
-        public void Update(RatingUpdateViewModel ratingUpdateViewModel, int requestedUserId)
+        public void Update(RatingUpdateViewModel ratingUpdateViewModel)
         {
             var updateRatingCommand = _mapper.Map<UpdateRatingCommand>(ratingUpdateViewModel);
-            updateRatingCommand.RequestedUserId = requestedUserId;
 
             _bus.SendCommand(updateRatingCommand);
         }

@@ -14,6 +14,8 @@ namespace GameScope.Application.AutoMapper
             CreateMap<GameCreateViewModel, CreateGameCommand>();
             CreateMap<GameUpdateViewModel, UpdateGameCommand>();
             CreateMap<UserRegisterViewModel, CreateUserCommand>();
+            CreateMap<RatingAddViewModel, CreateRatingCommand>();
+            CreateMap<RatingUpdateViewModel, UpdateRatingCommand>();
         }
     }
 }

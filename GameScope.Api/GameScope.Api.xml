@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameScope.Api</name>
+    </assembly>
+    <members>
+        <member name="T:GameScope.Api.Controllers.GamesController">
+            <summary>
+            api/games controller manages http requests for game entity.
+            </summary>
+        </member>
+        <member name="T:GameScope.Api.Controllers.RatingsController">
+            <summary>
+            api/ratings controller manages http requests for ratings entity.
+            </summary>
+        </member>
+        <member name="T:GameScope.Api.Controllers.UsersController">
+            <summary>
+            api/users controller manages http requests for user entity.
+            </summary>
+        </member>
+    </members>
+</doc>

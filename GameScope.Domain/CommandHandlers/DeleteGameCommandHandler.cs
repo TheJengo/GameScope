@@ -22,6 +22,11 @@ namespace GameScope.Domain.CommandHandlers
         {
             var game = _gameRepository.GetById(request.Id);
 
+            if(game == null)
+            {
+                return Task.FromResult(false);
+            }
+
             if(game.UserId != request.UserId)
             {
                 return Task.FromResult(false);
