@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GameScope.Domain\GameScope.Domain.csproj" />
     <ProjectReference Include="..\GameScope.Infra.Bus\GameScope.Infra.Bus.csproj" />
+    <ProjectReference Include="..\GameScope.Infra.Common\GameScope.Infra.Common.csproj" />
     <ProjectReference Include="..\GameScope.Infra.Data\GameScope.Infra.Data.csproj" />
   </ItemGroup>
 
