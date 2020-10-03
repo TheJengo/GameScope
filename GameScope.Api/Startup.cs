@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameScope.Api.Configurations;
 using GameScope.Infra.Data.Context;
 using GameScope.Infra.IoC;
 using MediatR;
@@ -37,7 +38,7 @@ namespace GameScope.Api
             });
 
             services.AddMediatR(typeof(Startup));
-
+            services.AddAutoMapper();
             services.AddGameScopeIoC(Configuration);
         }
 

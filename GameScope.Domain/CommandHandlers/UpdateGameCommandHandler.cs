@@ -21,16 +21,20 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(UpdateGameCommand request, CancellationToken cancellationToken)
         {
-            //var game = _gameRepository.GetGame(x => x.Id == request.Id);
-            //game.Name = request.Name;
-            //game.Description = request.Description;
-            //game.ReleaseDate = request.ReleaseDate;
-            //game.UpdatedAt = request.UpdatedAt;
+            var game = _gameRepository.GetById(request.Id);
+            
+            if (game.UserId != request.UserId)
+            {
+                return Task.FromResult(false);
+            }
+            
+            game.Name = request.Name;
+            game.Description = request.Description;
+            game.ReleaseDate = request.ReleaseDate;
+            game.UpdatedDate = request.UpdatedAt;
+            _gameRepository.Update(game);
 
-            // _gameRepository.Update(game);
-
-            //return Task.FromResult(_gameRepository.SaveChanges() > 0);
-            return Task.FromResult(true);
+            return Task.FromResult(_gameRepository.SaveChanges() > 0);
         }
     }
 }

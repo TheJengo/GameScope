@@ -13,11 +13,26 @@ namespace GameScope.Application.AutoMapper
         public DomainToViewModelProfile()
         {
             CreateMap<Game, GameListViewModel>()
-                .ForMember(dest => dest.RatingAverage, opt => opt.MapFrom(src => src.Ratings.Select(x=>x.Value).Average()))
+                .ForMember(dest => dest.RatingAverage, opt => opt.MapFrom(src => src.Ratings.Select(x => x.Value).Average()))
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.User.Email))
                 .ReverseMap()
                 .ForPath(s => s.User.Email, opt => opt.Ignore())
                 .ForPath(s => s.Ratings, opt => opt.Ignore());
+
+            CreateMap<Game, UserGameListViewModel>();
+            
+            CreateMap<Rating, UserRatingListView>()
+                .ForMember(dest => dest.Game, opt => opt.MapFrom(src => src.Game.Name))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.UpdatedDate.HasValue ? src.UpdatedDate : src.CreatedDate));
+
+            CreateMap<User, UserDetailsViewModel>()
+                .ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.ToList()))
+                .ForMember(dest => dest.Ratings, opt => opt.MapFrom(src => src.Ratings.ToList()));
+
+            CreateMap<Rating, RateListViewModel>()
+                .ForMember(dest => dest.Game, opt => opt.MapFrom(src => src.Game.Name))
+                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.UpdatedDate.HasValue ? src.UpdatedDate : src.CreatedDate));
         }
     }
 }

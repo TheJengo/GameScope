@@ -20,11 +20,16 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(DeleteGameCommand request, CancellationToken cancellationToken)
         {
-            //var game = _gameRepository.GetGame(x => x.Id == request.Id);
-            // _gameRepository.Remove(game);
+            var game = _gameRepository.GetById(request.Id);
 
-            //return Task.FromResult(_gameRepository.SaveChanges() > 0);
-            return Task.FromResult(true);
+            if(game.UserId != request.UserId)
+            {
+                return Task.FromResult(false);
+            }
+
+            _gameRepository.Remove(request.Id);
+
+            return Task.FromResult(_gameRepository.SaveChanges() > 0);
         }
     }
 }

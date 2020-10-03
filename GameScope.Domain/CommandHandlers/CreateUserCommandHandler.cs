@@ -30,10 +30,9 @@ namespace GameScope.Domain.CommandHandlers
                 UpdatedDate = null
             };
 
-            // _userRepository.Add(user);
+            _userRepository.Add(user);
 
-            // return Task.FromResult(_userRepository.SaveChanges() > 0);
-            return Task.FromResult(true);
+            return Task.FromResult(_userRepository.SaveChanges() > 0);
         }
     }
 }

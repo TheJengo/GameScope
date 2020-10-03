@@ -4,6 +4,7 @@ using System.Text;
 
 namespace GameScope.Domain.Interfaces
 {
+    // Marker Interface
     public interface IEntity
     {
     }

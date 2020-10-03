@@ -20,11 +20,10 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(DeleteRatingCommand request, CancellationToken cancellationToken)
         {
-            //var rating = _ratingRepository.GetGame(x => x.Id == request.Id);
-            // _ratingRepository.Remove(rating);
+            var rating = _ratingRepository.GetSingle(x => x.UserId == request.UserId && x.GameId == request.GameId);
+            _ratingRepository.Remove(rating);
 
-            //return Task.FromResult(_ratingRepository.SaveChanges() > 0);
-            return Task.FromResult(true);
+            return Task.FromResult(_ratingRepository.SaveChanges() > 0);
         }
     }
 }

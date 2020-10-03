@@ -26,26 +26,36 @@ namespace GameScope.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return StatusCode(StatusCodes.Status200OK);
+            var games = _gameService.GetAll();
+
+            return StatusCode(StatusCodes.Status200OK, games);
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] GameCreateViewModel gameCreateViewModel)
         {
+            gameCreateViewModel.UserId = Convert.ToInt32(User.Identity.Name);
+            _gameService.Add(gameCreateViewModel);
+
             return StatusCode(StatusCodes.Status200OK);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] GameUpdateViewModel gameUpdateViewModel, int  id)
+        public IActionResult Put([FromBody] GameUpdateViewModel gameUpdateViewModel, int id)
         {
             gameUpdateViewModel.Id = id;
+            gameUpdateViewModel.UserId = Convert.ToInt32(User.Identity.Name);
+            _gameService.Update(gameUpdateViewModel);
 
             return StatusCode(StatusCodes.Status200OK);
         }
 
-        [HttpDelete("{id}"]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var userId = Convert.ToInt32(User.Identity.Name);
+            _gameService.Delete(id, userId);
+
             return StatusCode(StatusCodes.Status200OK);
         }
     }

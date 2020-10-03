@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameScope.Application\GameScope.Application.csproj" />
     <ProjectReference Include="..\GameScope.Domain\GameScope.Domain.csproj" />
     <ProjectReference Include="..\GameScope.Infra.Bus\GameScope.Infra.Bus.csproj" />
     <ProjectReference Include="..\GameScope.Infra.Common\GameScope.Infra.Common.csproj" />

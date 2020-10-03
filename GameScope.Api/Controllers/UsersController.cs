@@ -26,7 +26,9 @@ namespace GameScope.Api.Controllers
         [HttpGet("me")]
         public IActionResult Get()
         {
-            return StatusCode(StatusCodes.Status200OK);
+            var user = _userService.GetById(Convert.ToInt32(User.Identity.Name));
+
+            return StatusCode(StatusCodes.Status200OK, user);
         }
 
         [HttpPost("register")]
@@ -40,8 +42,9 @@ namespace GameScope.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserRegisterViewModel userRegisterViewModel)
         {
+            var token = _userService.Login(userRegisterViewModel.Email, userRegisterViewModel.Password);
 
-            return StatusCode(StatusCodes.Status200OK);
+            return StatusCode(StatusCodes.Status200OK, token);
         }
     }
 }

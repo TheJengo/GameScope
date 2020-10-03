@@ -10,5 +10,6 @@ namespace GameScope.Domain.Commands
         public int GameId { get; set; }
         public int UserId { get; set; }
         public int Value { get; set; }
+        public int RequestedUserId { get; set; }
     }
 }

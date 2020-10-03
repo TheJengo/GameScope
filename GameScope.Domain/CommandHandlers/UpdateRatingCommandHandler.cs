@@ -20,14 +20,13 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(UpdateRatingCommand request, CancellationToken cancellationToken)
         {
-            //var rating = _ratingRepository.Get(x => x.UserId == request.UserId && x.GameId == request.GameId);
-            //rating.Value = request.Value;
-            //rating.UpdatedAt = request.TimeStamp;
+            var rating = _ratingRepository.GetSingle(x => x.UserId == request.UserId && x.GameId == request.GameId);
+            rating.Value = request.Value;
+            rating.UpdatedDate = request.TimeStamp;
 
-            // _ratingRepository.Update(rating);
+            _ratingRepository.Update(rating);
 
-            //return Task.FromResult(_ratingRepository.SaveChanges() > 0);
-            return Task.FromResult(true);
+            return Task.FromResult(_ratingRepository.SaveChanges() > 0);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using GameScope.Domain.CommandHandlers;
+﻿using GameScope.Application.Interfaces;
+using GameScope.Application.Services;
+using GameScope.Domain.CommandHandlers;
 using GameScope.Domain.Commands;
 using GameScope.Domain.Core.Bus;
 using GameScope.Domain.Interfaces;
@@ -33,10 +35,14 @@ namespace GameScope.Infra.IoC
             services.AddScoped<IRequestHandler<DeleteRatingCommand, bool>, DeleteRatingCommandHandler>();
 
             // Application Layer Injections
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGameService, GameService>();
+            services.AddScoped<IRatingService, RatingService>();
 
             // Infa Common Layer Injections
             services.AddJwt(configuration);
             services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IJwtHandler, JwtHandler>();
 
             // Infra Data Layer Injections
             services.AddScoped<IUserRepository, UserRepository>();

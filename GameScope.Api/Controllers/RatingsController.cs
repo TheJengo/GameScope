@@ -26,6 +26,9 @@ namespace GameScope.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] RatingAddViewModel ratingAddViewModel)
         {
+            ratingAddViewModel.UserId = Convert.ToInt32(User.Identity.Name);
+            _ratingService.Add(ratingAddViewModel);
+
             return StatusCode(StatusCodes.Status200OK);
         }
 
@@ -33,13 +36,18 @@ namespace GameScope.Api.Controllers
         public IActionResult Put([FromBody] RatingUpdateViewModel ratingUpdateViewModel, int gameId)
         {
             ratingUpdateViewModel.GameId = gameId;
+            var userId = Convert.ToInt32(User.Identity.Name);
+            _ratingService.Update(ratingUpdateViewModel, userId);
 
             return StatusCode(StatusCodes.Status200OK);
         }
 
-        [HttpDelete("{id}"]
-        public IActionResult Delete(int id)
+        [HttpDelete()]
+        public IActionResult Delete(int gameId, int userId)
         {
+            var requestedUserId = Convert.ToInt32(User.Identity.Name);
+            _ratingService.Delete(userId, gameId, requestedUserId);
+
             return StatusCode(StatusCodes.Status200OK);
         }
     }
