@@ -31,7 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Common", "Infra.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Infra.Common", "GameScope.Infra.Common\GameScope.Infra.Common.csproj", "{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Api", "GameScope.Api\GameScope.Api.csproj", "{359D4985-66BB-4BB1-A149-B08ADC3C61FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameScope.Api", "GameScope.Api\GameScope.Api.csproj", "{359D4985-66BB-4BB1-A149-B08ADC3C61FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Api.Tests", "GameScope.Api.Tests\GameScope.Api.Tests.csproj", "{0BC6E434-00AE-433B-AC69-C85B80379DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScope.Application.Tests", "GameScope.Application.Tests\GameScope.Application.Tests.csproj", "{59F9DF8A-2C3A-4DDB-A690-CF97539C5361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{359D4985-66BB-4BB1-A149-B08ADC3C61FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BC6E434-00AE-433B-AC69-C85B80379DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC6E434-00AE-433B-AC69-C85B80379DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC6E434-00AE-433B-AC69-C85B80379DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC6E434-00AE-433B-AC69-C85B80379DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F9DF8A-2C3A-4DDB-A690-CF97539C5361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F9DF8A-2C3A-4DDB-A690-CF97539C5361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F9DF8A-2C3A-4DDB-A690-CF97539C5361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F9DF8A-2C3A-4DDB-A690-CF97539C5361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +96,8 @@ Global
 		{7514E1EA-281E-467C-BC1C-827846D84EEC} = {36585A85-DA48-4E2B-9567-E327775E6828}
 		{4EB985A5-0AF8-46B4-9CA7-E9D2A6C896FC} = {B40E55B2-8C4D-4574-B113-8A400209CFB3}
 		{359D4985-66BB-4BB1-A149-B08ADC3C61FC} = {2D496C52-E21E-4AAE-A2C3-660E7BB8E7D3}
+		{0BC6E434-00AE-433B-AC69-C85B80379DE6} = {2D496C52-E21E-4AAE-A2C3-660E7BB8E7D3}
+		{59F9DF8A-2C3A-4DDB-A690-CF97539C5361} = {36585A85-DA48-4E2B-9567-E327775E6828}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04793DD5-87C0-4172-8DAA-F2A8D1CB23CB}

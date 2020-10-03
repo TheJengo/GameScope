@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace GameScope.Application.Tests.Unit.Services
@@ -30,7 +31,7 @@ namespace GameScope.Application.Tests.Unit.Services
         }
 
         [Fact]
-        public async void rating_service_add_should_succeed()
+        public async Task rating_service_add_should_succeed()
         {
             var ratingAddViewModel = new RatingAddViewModel
             {
@@ -45,7 +46,7 @@ namespace GameScope.Application.Tests.Unit.Services
         }
 
         [Fact]
-        public async void rating_service_update_should_succeed()
+        public async Task rating_service_update_should_succeed()
         {
             var ratingUpdateViewModel = new RatingUpdateViewModel
             {
@@ -60,7 +61,7 @@ namespace GameScope.Application.Tests.Unit.Services
         }
 
         [Fact]
-        public async void rating_service_delete_should_succeed()
+        public async Task rating_service_delete_should_succeed()
         {
             var gameId = 1;
             var userId = 1;
@@ -70,7 +71,7 @@ namespace GameScope.Application.Tests.Unit.Services
         }
 
         [Fact]
-        public async void rating_service_get_all_should_succeed()
+        public async Task rating_service_get_all_should_succeed()
         {
             var ratings = new List<Rating>()
             {

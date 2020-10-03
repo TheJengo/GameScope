@@ -19,7 +19,7 @@ namespace GameScope.Application.Tests.Unit.Services
     {
 
         [Fact]
-        public async void user_service_login_should_return_jwt()
+        public async Task user_service_login_should_return_jwt()
         {
             var email = "test@test.com";
             var password = "secret";
@@ -48,5 +48,11 @@ namespace GameScope.Application.Tests.Unit.Services
             jwt.Should().NotBeNull();
             jwt.Token.Should().Be(token);
         }
+
+        //[Fact]
+        //public async Task user_service_register_should_succeed()
+        //{
+
+        //}
     }
 }
