@@ -42,9 +42,9 @@ namespace GameScope.Application.Services
 
         public void Delete(int id, int userId)
         {
-            var updateGameCommand = new DeleteGameCommand(id, userId);
+            var deleteGameCommand = new DeleteGameCommand(id, userId);
 
-            _bus.SendCommand(updateGameCommand);
+            _bus.SendCommand(deleteGameCommand);
         }
 
         public IList<GameListViewModel> GetAll()
@@ -56,9 +56,9 @@ namespace GameScope.Application.Services
 
         public GameDetailsViewModel GetById(int id)
         {
-            var game = _gameRepository.GetSingle(x => x.Id == id, g => g.Ratings, g => g.User);
-            var gameRatings = _ratingRepository.GetList(x => x.GameId == game.Id, r => r.User);
-            game.Ratings = gameRatings;
+            var game = _gameRepository.GetSingle(x => x.Id == id, g => g.User);
+            var gameRatings = _ratingRepository.GetList(x => x.GameId == id, r => r.User);
+            game.Ratings = gameRatings.ToList();
 
             return _mapper.Map<GameDetailsViewModel>(game);
         }
