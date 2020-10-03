@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GameScope.Domain.Core\GameScope.Domain.Core.csproj" />
     <ProjectReference Include="..\GameScope.Domain\GameScope.Domain.csproj" />
+    <ProjectReference Include="..\GameScope.Infra.Common\GameScope.Infra.Common.csproj" />
   </ItemGroup>
 
 </Project>
