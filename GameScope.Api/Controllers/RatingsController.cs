@@ -59,14 +59,14 @@ namespace GameScope.Api.Controllers
             return StatusCode(StatusCodes.Status200OK);
         }
 
-        [HttpDelete()]
+        [HttpDelete("{gameId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 500)]
-        public IActionResult Delete(int gameId, int userId)
+        public IActionResult Delete(int gameId)
         {
-            var requestedUserId = Convert.ToInt32(User.Identity.Name);
-            _ratingService.Delete(userId, gameId, requestedUserId);
+            var userId = Convert.ToInt32(User.Identity.Name);
+            _ratingService.Delete(userId, gameId);
 
             return StatusCode(StatusCodes.Status200OK);
         }

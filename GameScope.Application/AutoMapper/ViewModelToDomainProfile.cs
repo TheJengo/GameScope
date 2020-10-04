@@ -11,11 +11,14 @@ namespace GameScope.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
-            CreateMap<GameCreateViewModel, CreateGameCommand>();
-            CreateMap<GameUpdateViewModel, UpdateGameCommand>();
-            CreateMap<UserRegisterViewModel, CreateUserCommand>();
-            CreateMap<RatingAddViewModel, CreateRatingCommand>();
-            CreateMap<RatingUpdateViewModel, UpdateRatingCommand>();
+            CreateMap<GameCreateViewModel, CreateGameCommand>()
+                .ConstructUsing(x => new CreateGameCommand(x.UserId, x.Name, x.Description, x.ReleaseDate));
+            CreateMap<GameUpdateViewModel, UpdateGameCommand>()
+                .ConstructUsing(x => new UpdateGameCommand(x.Id, x.UserId, x.Name, x.Description, x.ReleaseDate));
+            CreateMap<RatingAddViewModel, CreateRatingCommand>()
+                .ConstructUsing(x => new CreateRatingCommand(x.UserId, x.GameId, x.Value));
+            CreateMap<RatingUpdateViewModel, UpdateRatingCommand>()
+                .ConstructUsing(x => new UpdateRatingCommand(x.UserId, x.GameId, x.Value));
         }
     }
 }

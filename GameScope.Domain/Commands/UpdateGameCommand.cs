@@ -8,14 +8,13 @@ namespace GameScope.Domain.Commands
 {
     public class UpdateGameCommand : GameCommand
     {
-        public UpdateGameCommand(int id, int userId, string name, string description, DateTime releaseDate, DateTime createdAt)
+        public UpdateGameCommand(int id, int userId, string name, string description, DateTime? releaseDate)
         {
             Id = id;
             UserId = userId;
             Name = name;
             Description = description;
             ReleaseDate = releaseDate;
-            CreatedAt = createdAt;
             UpdatedAt = TimeStamp;
         }
 
