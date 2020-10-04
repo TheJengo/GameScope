@@ -1,22 +1,27 @@
 ﻿using GameScope.Domain.Core.Commands;
+using GameScope.Domain.Validations;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GameScope.Domain.Commands
 {
-    public class CreateUserCommand : Command
+    public class CreateUserCommand : UserCommand
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Salt { get; set; }
-        public DateTime CreatedAt { get; protected set; }
-        public DateTime? UpdatedDate { get; protected set; }
-
-        public CreateUserCommand()
+        public CreateUserCommand(string email, string password, string salt)
         {
-            CreatedAt = TimeStamp;
+            Email = email;
+            Salt = salt;
+            Password = password;
+            CreatedDate = TimeStamp;
             UpdatedDate = null;
+        }
+
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateUserCommandValidation().Validate(this);
+            
+            return ValidationResult.IsValid;
         }
     }
 }

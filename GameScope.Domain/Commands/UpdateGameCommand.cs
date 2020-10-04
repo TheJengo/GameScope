@@ -1,22 +1,29 @@
 ﻿using GameScope.Domain.Core.Commands;
+using GameScope.Domain.Validations;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GameScope.Domain.Commands
 {
-    public class UpdateGameCommand : Command
+    public class UpdateGameCommand : GameCommand
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime? ReleaseDate { get; set; }
-        public DateTime? UpdatedAt { get; protected set; }
-
-        public UpdateGameCommand()
+        public UpdateGameCommand(int id, int userId, string name, string description, DateTime releaseDate, DateTime createdAt)
         {
+            Id = id;
+            UserId = userId;
+            Name = name;
+            Description = description;
+            ReleaseDate = releaseDate;
+            CreatedAt = createdAt;
             UpdatedAt = TimeStamp;
+        }
+
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateGameCommandValidation().Validate(this);
+
+            return ValidationResult.IsValid;
         }
     }
 }

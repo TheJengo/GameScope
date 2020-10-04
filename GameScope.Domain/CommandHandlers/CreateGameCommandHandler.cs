@@ -1,6 +1,7 @@
 ﻿using GameScope.Domain.Commands;
 using GameScope.Domain.Interfaces;
 using GameScope.Domain.Models;
+using GameScope.Infra.Common.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,32 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(CreateGameCommand request, CancellationToken cancellationToken)
         {
-            var game = new Game
+            try
             {
-                Name = request.Name,
-                UserId = request.UserId,
-                Description = request.Description,
-                ReleaseDate = request.ReleaseDate,
-                CreatedDate = request.CreatedAt,
-                UpdatedDate = request.UpdatedAt
-            };
+                if (!request.IsValid())
+                {
+                    var error = request.ValidationResult.Errors[0];
 
-            _gameRepository.Add(game);
+                    throw new GameScopeException(error.ErrorCode, error.ErrorMessage);
+                }
 
-            return Task.FromResult(_gameRepository.SaveChanges() > 0);
+                var game = new Game
+                {
+                    Name = request.Name,
+                    UserId = request.UserId,
+                    Description = request.Description,
+                    ReleaseDate = request.ReleaseDate,
+                    CreatedDate = request.CreatedAt,
+                    UpdatedDate = request.UpdatedAt
+                };
+
+                _gameRepository.Add(game);
+
+                return Task.FromResult(_gameRepository.SaveChanges() > 0);
+            }catch(Exception ex)
+            {
+                return Task.FromResult(false);
+            }
         }
     }
 }
