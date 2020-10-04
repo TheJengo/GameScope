@@ -8,9 +8,8 @@ namespace GameScope.Domain.Commands
 {
     public class CreateGameCommand : GameCommand
     {
-        public CreateGameCommand(int id, int userId, string name, string description, DateTime releaseDate)
+        public CreateGameCommand(int userId, string name, string description, DateTime? releaseDate)
         {
-            Id = id;
             UserId = userId;
             Name = name;
             Description = description;

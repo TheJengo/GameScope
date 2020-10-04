@@ -10,6 +10,6 @@ namespace GameScope.Application.Interfaces
         IList<RateListViewModel> GetAll();
         void Add(RatingAddViewModel ratingAddViewModel);
         void Update(RatingUpdateViewModel ratingUpdateViewModel);
-        void Delete(int userId, int gameId, int requestedUserId);
+        void Delete(int userId, int gameId);
     }
 }

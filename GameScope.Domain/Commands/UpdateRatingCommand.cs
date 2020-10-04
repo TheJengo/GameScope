@@ -8,12 +8,11 @@ namespace GameScope.Domain.Commands
 {
     public class UpdateRatingCommand : RatingCommand
     {
-        public UpdateRatingCommand(int userId, int gameId, int value, DateTime createdAt)
+        public UpdateRatingCommand(int userId, int gameId, int value)
         {
             UserId = userId;
             GameId = gameId;
             Value = value;
-            CreatedDate = createdAt;
             UpdatedDate = TimeStamp;
         }
 

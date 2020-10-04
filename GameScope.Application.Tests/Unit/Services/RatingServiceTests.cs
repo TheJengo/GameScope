@@ -65,8 +65,7 @@ namespace GameScope.Application.Tests.Unit.Services
         {
             var gameId = 1;
             var userId = 1;
-            var requestedUserId = 1;
-            _ratingService.Delete(userId, gameId, requestedUserId);
+            _ratingService.Delete(userId, gameId);
             _mediatorBusMock.Verify(x => x.SendCommand(It.IsAny<DeleteRatingCommand>()), Times.Once);
         }
 
