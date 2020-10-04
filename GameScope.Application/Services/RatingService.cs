@@ -39,12 +39,7 @@ namespace GameScope.Application.Services
 
         public void Delete(int userId, int gameId, int requestedUserId)
         {
-            var deleteRatingCommand = new DeleteRatingCommand
-            {
-                UserId = userId,
-                GameId = gameId,
-                RequestedUserId = requestedUserId
-            };
+            var deleteRatingCommand = new DeleteRatingCommand(userId, gameId);
 
             _bus.SendCommand(deleteRatingCommand);
         }

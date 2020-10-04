@@ -1,5 +1,6 @@
 ﻿using GameScope.Domain.Commands;
 using GameScope.Domain.Interfaces;
+using GameScope.Infra.Common.Exceptions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -20,19 +21,32 @@ namespace GameScope.Domain.CommandHandlers
 
         public Task<bool> Handle(UpdateRatingCommand request, CancellationToken cancellationToken)
         {
-            var rating = _ratingRepository.GetSingle(x => x.UserId == request.UserId && x.GameId == request.GameId);
-            
-            if(rating == null)
+            try
             {
-                return Task.FromResult(false);
+                if (!request.IsValid())
+                {
+                    var error = request.ValidationResult.Errors[0];
+
+                    throw new GameScopeException(error.ErrorCode, error.ErrorMessage);
+                }
+
+                var rating = _ratingRepository.GetSingle(x => x.UserId == request.UserId && x.GameId == request.GameId);
+
+                if (rating == null)
+                {
+                    throw new GameScopeException("rating_not_found", $"You don't have a related rating to this game");
+                }
+
+                rating.Value = request.Value;
+                rating.UpdatedDate = request.TimeStamp;
+
+                _ratingRepository.Update(rating);
+
+                return Task.FromResult(_ratingRepository.SaveChanges() > 0);
+            }catch(Exception ex)
+            {
+                throw ex;
             }
-
-            rating.Value = request.Value;
-            rating.UpdatedDate = request.TimeStamp;
-
-            _ratingRepository.Update(rating);
-
-            return Task.FromResult(_ratingRepository.SaveChanges() > 0);
         }
     }
 }

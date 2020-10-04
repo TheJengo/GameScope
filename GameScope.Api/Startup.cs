@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using GameScope.Api.Configurations;
+using GameScope.Api.Middlewares;
 using GameScope.Infra.Data.Context;
 using GameScope.Infra.IoC;
 using MediatR;
@@ -108,8 +109,9 @@ namespace GameScope.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseCors("AllowOrigin");
 
@@ -120,9 +122,9 @@ namespace GameScope.Api
             app.UseAuthentication();
 
             app.UseAuthorization();
-            
+
             app.UseSwagger();
-            
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "GameScope API v1");

@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GameScope.Domain.Core\GameScope.Domain.Core.csproj" />
+    <ProjectReference Include="..\GameScope.Infra.Common\GameScope.Infra.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@ using GameScope.Domain.Commands;
 using GameScope.Domain.Core.Bus;
 using GameScope.Domain.Interfaces;
 using GameScope.Infra.Common.Auth;
+using GameScope.Infra.Common.Exceptions;
 using GameScope.Infra.Common.Security;
 using System;
 using System.Collections.Generic;
@@ -33,18 +34,21 @@ namespace GameScope.Application.Services
 
         public void Register(UserRegisterViewModel userRegisterViewModel)
         {
-            //var user = await _userRepository.GetAsync(email);
+            var user = _userRepository.GetSingle(x=>x.Email.Equals(userRegisterViewModel.Email.ToLowerInvariant()));
 
-            //if (user != null)
-            //{
-            //}
-
-            var createUserCommand = new CreateUserCommand
+            if (user != null)
             {
-                Email = userRegisterViewModel.Email.ToLowerInvariant()
-            };
-            createUserCommand.Salt = _encrypter.GetSalt();
-            createUserCommand.Password = _encrypter.GetHash(userRegisterViewModel.Password, createUserCommand.Salt);
+                throw new GameScopeException("user_already_exists", "This email already registered");
+            }
+
+            var salt = _encrypter.GetSalt();
+            var password = _encrypter.GetHash(userRegisterViewModel.Password, salt);
+
+            var createUserCommand = new CreateUserCommand(
+             userRegisterViewModel.Email.ToLowerInvariant(),
+             password,
+             salt
+            );
 
             _bus.SendCommand(createUserCommand);
         }
@@ -53,16 +57,16 @@ namespace GameScope.Application.Services
         {
             var user = _userRepository.GetSingle(x => x.Email == email.ToLowerInvariant());
 
-            //if (user == null)
-            //{
-            //    throw new ActioException("invalid_credentials",
-            //        $"Invalid credentials");
-            //}
+            if (user == null)
+            {
+                throw new GameScopeException("invalid_credentials",
+                    $"Invalid credentials");
+            }
 
             if (!ValidatePassword(user.Password, user.Salt, password, _encrypter))
             {
-                //    throw new ActioException("invalid_credentials",
-                //    $"Invalid credentials");
+                throw new GameScopeException("invalid_credentials",
+                $"Invalid credentials");
             }
 
             return _jwtHandler.Create(user.Id);
