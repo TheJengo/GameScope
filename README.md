@@ -1,6 +1,9 @@
 # Gamescope.Backend
 This project developed for DataScope with .NET. In this project I've aimed to strict with the Best Practices and Clean Architecture with CQRS pattern.
 
+### [Demo](https://gamescope-api.azurewebsites.net/)
+You can visit and explore the api via swagger documentation.
+
 ## Requirements
 Develop an app with your capabilities containing frontend&backend. There are three entities named User, Game (Name, Description, Release Date) and Ratings.
 * Users can add, edit, delete and read the games.
