@@ -23,6 +23,9 @@ namespace GameScope.Application.AutoMapper
             CreateMap<Game, UserGameListViewModel>();
 
             CreateMap<Game, GameDetailsViewModel>()
+                .ForMember(dest => dest.RatingAverage, opt => opt.MapFrom(src => src.Ratings.ToList().Count > 0 ? src.Ratings.ToList().Select(x => x.Value).Average() : 0))
+                .ForMember(dest => dest.TotalRatings, opt => opt.MapFrom(src => src.Ratings.ToList().Count))
+                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.User.Email))
                 .ForMember(dest => dest.Ratings, opt => opt.MapFrom(src => src.Ratings.ToList()));
 
             CreateMap<Rating, GameRateListViewModel>()
