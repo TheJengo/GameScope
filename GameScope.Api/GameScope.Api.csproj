@@ -36,5 +36,11 @@
     <ProjectReference Include="..\GameScope.Infra.IoC\GameScope.Infra.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="GameScope.Api.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
