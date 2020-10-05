@@ -20,7 +20,9 @@ This project has dependecies to listed nugets:
 * EntityframeworkCore
 
 ## Build
-Please don't forget the set the ConnectionString in the appsettings.json to your local database.
+Please don't forget the set the ConnectionString in the appsettings.json to your local database. 
+Then open Package-Manager and select Infra.Data in it and set Api projet as startup project.
+Then insert update-database to PM and your database will be prepared.
 
 ## Tests
 Tests are developed with Xunit.
