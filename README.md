@@ -1,4 +1,4 @@
-# GamescopeApp
+# Gamescope.Backend
 This project developed for DataScope with .NET. In this project I've aimed to strict with the Best Practices and Clean Architecture with CQRS pattern.
 
 ## Requirements
