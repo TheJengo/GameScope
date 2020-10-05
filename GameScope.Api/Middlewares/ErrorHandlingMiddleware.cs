@@ -1,4 +1,5 @@
 ﻿using GameScope.Infra.Common.Exceptions;
+using GameScope.Infra.Common.Logging;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -12,10 +13,12 @@ namespace GameScope.Api.Middlewares
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILoggerService _logger;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
+        public ErrorHandlingMiddleware(RequestDelegate next, ILoggerService logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -30,17 +33,19 @@ namespace GameScope.Api.Middlewares
             }
         }
 
-        // TODO-Add logger
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             object errors = null;
+            var location = context.GetEndpoint().DisplayName;
             switch (exception)
             {
                 case GameScopeException gameScopeException:
+                    _logger.LogError($"{location}-{gameScopeException.Code}-{gameScopeException.Message}");
                     errors = gameScopeException.Message;
                     context.Response.StatusCode = 400;
                     break;
                 case { } e:
+                    _logger.LogError($"{location}-{e.Message}");
                     errors = string.IsNullOrWhiteSpace(e.Message) ? "Error" : e.Message;
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
