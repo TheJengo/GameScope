@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using GameScope.Api.Configurations;
 using GameScope.Api.Middlewares;
+using GameScope.Infra.Common.Logging;
+using GameScope.Infra.Common.Logging.Email;
 using GameScope.Infra.Data.Context;
 using GameScope.Infra.IoC;
 using MediatR;
@@ -44,6 +46,10 @@ namespace GameScope.Api
                 options.UseSqlServer(Configuration.GetConnectionString("GameScopeDBConnection"));
             });
 
+            // logger configs
+            services.Configure<SerilogConfiguration>(Configuration.GetSection("Serilog"));
+            services.Configure<SerilogEmailConfiguration>(options => Configuration.GetSection("SerilogEmailConfiguration").Bind(options));
+            
             services.AddMediatR(typeof(Startup));
             services.AddAutoMapper();
             services.AddGameScopeIoC(Configuration);
