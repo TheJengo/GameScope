@@ -1,7 +1,7 @@
 # Gamescope.Backend
 This project developed for DataScope with .NET. In this project I've aimed to strict with the Best Practices and Clean Architecture with CQRS pattern.
 
-### [Demo](https://gamescope-api.azurewebsites.net/)
+### [Demo](https://gamescope-api.azurewebsites.net/) - [Frontend](https://github.com/TheJengo/gamescope-app)
 You can visit and explore the api via swagger documentation.
 
 ## Requirements
