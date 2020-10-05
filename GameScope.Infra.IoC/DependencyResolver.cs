@@ -6,6 +6,7 @@ using GameScope.Domain.Core.Bus;
 using GameScope.Domain.Interfaces;
 using GameScope.Infra.Bus;
 using GameScope.Infra.Common.Auth;
+using GameScope.Infra.Common.Logging;
 using GameScope.Infra.Common.Security;
 using GameScope.Infra.Data.Context;
 using GameScope.Infra.Data.Repository;
@@ -43,6 +44,7 @@ namespace GameScope.Infra.IoC
             services.AddJwt(configuration);
             services.AddScoped<IEncrypter, Encrypter>();
             services.AddScoped<IJwtHandler, JwtHandler>();
+            services.AddSingleton<ILoggerService, LoggerService>();
 
             // Infra Data Layer Injections
             services.AddScoped<IUserRepository, UserRepository>();
