@@ -11,6 +11,8 @@ namespace GameScope.Application.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? ReleaseDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public double RatingAverage { get; set; }
         public int TotalRatings { get; set; }
         public string Owner { get; set; }

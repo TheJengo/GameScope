@@ -13,10 +13,12 @@ namespace GameScope.Domain.CommandHandlers
     public class DeleteGameCommandHandler : IRequestHandler<DeleteGameCommand, bool>
     {
         private readonly IGameRepository _gameRepository;
+        private readonly IRatingRepository _ratingRepository;
 
-        public DeleteGameCommandHandler(IGameRepository gameRepository)
+        public DeleteGameCommandHandler(IGameRepository gameRepository, IRatingRepository ratingRepository)
         {
             _gameRepository = gameRepository;
+            _ratingRepository = ratingRepository;
         }
 
         public Task<bool> Handle(DeleteGameCommand request, CancellationToken cancellationToken)
@@ -42,6 +44,14 @@ namespace GameScope.Domain.CommandHandlers
                     throw new GameScopeException("unauthorized_game_delete", $"You don't have a permission to edit this game.");
                 }
 
+                var ratings = _ratingRepository.GetList(x => x.GameId == request.Id);
+
+                foreach (var rating in ratings)
+                {
+                    _ratingRepository.Remove(rating);
+                }
+
+                _ratingRepository.SaveChanges();
                 _gameRepository.Remove(request.Id);
 
                 return Task.FromResult(_gameRepository.SaveChanges() > 0);

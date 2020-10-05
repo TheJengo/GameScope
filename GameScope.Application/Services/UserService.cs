@@ -55,6 +55,12 @@ namespace GameScope.Application.Services
 
         public JsonWebToken Login(string email, string password)
         {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                throw new GameScopeException("invalid_credentials",
+                    $"Invalid credentials");
+            }
+
             var user = _userRepository.GetSingle(x => x.Email == email.ToLowerInvariant());
 
             if (user == null)
