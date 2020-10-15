@@ -21,6 +21,7 @@ This project has dependecies to listed nugets:
 * FluentValidation
 * FluenAssertations
 * EntityframeworkCore
+* Serilog
 
 ## Build
 Please don't forget the set the ConnectionString in the appsettings.json to your local database. 
@@ -29,3 +30,23 @@ Then insert update-database to PM and your database will be prepared.
 
 ## Tests
 Tests are developed with Xunit.
+
+## Logging
+If you want to settleup logger for your local database you can copy-paste the script provided below.
+```
+CREATE TABLE [Logs] (
+
+   [Id] int IDENTITY(1,1) NOT NULL,
+   [Message] nvarchar(max) NULL,
+   [MessageTemplate] nvarchar(max) NULL,
+   [Level] nvarchar(128) NULL,
+   [TimeStamp] datetimeoffset(7) NOT NULL,
+   [Exception] nvarchar(max) NULL,
+   [Properties] xml NULL,
+   [LogEvent] nvarchar(max) NULL
+
+   CONSTRAINT [PK_Log]
+     PRIMARY KEY CLUSTERED ([Id] ASC)
+
+)
+```
